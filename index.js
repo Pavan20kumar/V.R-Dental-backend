@@ -1,10 +1,7 @@
 const express = require('express')
 const nodemailer = require('nodemailer')
 const cors = require('cors')
-
-
 const app = express()
-
 app.use(express.json())
 app.use(cors())
 
@@ -13,8 +10,12 @@ app.use(cors())
 
 
 
+
+
+
 app.post('/send', (req, res) => {
-    const { name, email, phoneNumber, appointmentDate, appointmentTime, message } = req.body
+  
+    const { name, email, phoneNumber, appointmentDate, appointmentTime, message, time } = req.body
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -51,7 +52,7 @@ app.post('/send', (req, res) => {
         <td style="background-color: #ffffff; padding: 20px;">
           <h1 style="color: #007bff; font-size: 24px; margin: 0 0 20px 0;">Welcome to V.R Dental Care</h1>
           <p style="color: #6c757d; font-size: 14px; line-height: 1.5;">Dear ${name},</p>
-          <p style="color: #6c757d; font-size: 14px; line-height: 1.5;">We hope this email finds you well. We wanted to remind you about your upcoming dental appointment scheduled for ${appointmentDate} at ${appointmentTime}.</p>
+          <p style="color: #6c757d; font-size: 14px; line-height: 1.5;">We hope this email finds you well. We wanted to remind you about your upcoming dental appointment scheduled for ${appointmentDate} at ${appointmentTime},${time}.</p>
           <a href="tel:+91{{from_phoneNumber}}" style="color: #6c757d; font-size: 14px; line-height: 1.5;">content PhoneNumber:${phoneNumber}</a>
           <p style="color: #6c757d; font-size: 14px; line-height: 1.5;">EmailAddress:${email}</p>
           <p style="color: #6c757d; font-size: 14px; line-height: 1.5;">Message :${message}</p>
@@ -130,8 +131,42 @@ app.post('/send', (req, res) => {
             console.log('Email sent: ' + info.response)
             res.status(200).send('Email sent successfully')
         }
+
+
     })
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 })
+
+
+
+
+
+
+
+
+
 
 
 
