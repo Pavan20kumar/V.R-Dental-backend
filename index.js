@@ -145,7 +145,7 @@ app.post('/cancel', (req, res) => {
         to: email,
         subject: 'Appointment Cancellation',
         html: `
-        Here's an example of an HTML email for a V.R Dental Care appointment cancellation:
+        
 
 
 <!DOCTYPE html>
